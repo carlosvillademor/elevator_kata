@@ -56,4 +56,16 @@ public class ElevatorSystemTest {
         assertThat(elevator, is("Elevator 2"));
     }
 
+    @Test
+    public void shouldChooseTheElevatorStationaryNearerToTheFloorWhereTheUserIs() {
+        //Given
+        int floor = 15;
+        int direction = 0;
+        ElevatorSystem elevatorSystem = new ElevatorSystem(5,0,9,10,14,-12,13,-5,17,0,6,-3);
+        //When
+        String elevator = elevatorSystem.findElevator(floor, direction);
+        //Then
+        assertThat(elevator, is("Elevator 5"));
+    }
+
 }

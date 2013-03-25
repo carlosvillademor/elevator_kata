@@ -30,9 +30,19 @@ public class ElevatorSystem {
                 return "Elevator " + (i+1);
             } else if(direction == 1 ? elevators[i][0] < floor && (elevators[i][0] + elevators[i][1] >= floor) : elevators[i][0] > floor && (elevators[i][0] + elevators[i][1] <= floor) ){
                 return "Elevator " + (i+1);
+            } else if(elevators[i][1] == 0) {
+                int nearest = findNearestStationaryElevator(elevators, floor);
             }
         }
         return "Elevator 6";
+    }
+
+    private int findNearestStationaryElevator(int[][] elevators, int floor) {
+        int nearest = -1;
+//        for (int i=0; i < stationaryElevators.size(); i++) {
+//            if(abs(stationaryElevators[i][0]-floor))
+//        }
+        return nearest;
     }
 
 }
