@@ -16,19 +16,35 @@ public class Elevator {
         this.direction = direction;
     }
 
-    public int getFloor() {
-        return this.floor;
-    }
-
-    public int getDirection() {
-        return this.direction;
-    }
-
     public boolean isStationary() {
         return this.direction == 0;
     }
 
     public int distanceToFloor(int floor) {
         return abs(floor - this.floor);
+    }
+
+    public boolean isOnFloor(int floor) {
+        return this.floor == floor;
+    }
+
+    public boolean isMovingUp() {
+        return this.direction > 0;
+    }
+
+    public boolean isMovingDown() {
+        return this.direction < 0;
+    }
+
+    public boolean isMovingInSameDirection(int direction) {
+        return (direction == 1 ? isMovingUp() : isMovingDown());
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public int getDirection() {
+        return direction;
     }
 }

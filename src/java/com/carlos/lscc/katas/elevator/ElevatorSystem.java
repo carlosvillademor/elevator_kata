@@ -19,29 +19,19 @@ public class ElevatorSystem {
         elevators.add(createElevator(floorElevator6, directionElevator6));
     }
 
-    private Elevator createElevator(int floorElevator1, int directionElevator1) {
-        return new Elevator(floorElevator1, directionElevator1);
-    }
-
     public int[][] showElevators() {
-        int[][] elevatorsArray = new int[6][2];
-        for (int i = 0; i < elevators.size(); i++) {
-            int [] elevator = {elevators.get(i).getFloor(), elevators.get(i).getDirection()};
-            elevatorsArray[i] = elevator;
-        }
-        return elevatorsArray;
+        return transformElevators();
     }
 
     public String findElevator(int floor, int direction) {
-        for (int i=0; i < elevators.size(); i++) {
-            if(elevators.get(i).getFloor() == floor && (elevators.get(i).getDirection() == 0 ||
-                    (direction == 1 ? elevators.get(i).getDirection() > 0 : elevators.get(i).getDirection() < 0))) {
-                return "Elevator " + (i+1);
-            } else if(direction == 1 ? elevators.get(i).getFloor() < floor &&
-                    (elevators.get(i).getFloor() + elevators.get(i).getDirection() >= floor) :
-                        elevators.get(i).getFloor() > floor &&
-                                (elevators.get(i).getFloor() + elevators.get(i).getDirection() <= floor) ){
-                return "Elevator " + (i+1);
+        for (Elevator elevator : elevators) {
+            if(elevator.isOnFloor(floor) && (elevator.isStationary() || elevator.isMovingInSameDirection(direction))) {
+                return "Elevator " + (elevators.indexOf(elevator)+1);
+            } else if(direction == 1 ? elevator.getFloor() < floor &&
+                    (elevator.getFloor() + elevator.getDirection() >= floor) :
+                        elevator.getFloor() > floor &&
+                                (elevator.getFloor() + elevator.getDirection() <= floor) ){
+                return "Elevator " + (elevators.indexOf(elevator)+1);
             }
         }
         int nearestStationaryElevator = findNearestStationaryElevator(elevators, floor);
@@ -60,6 +50,19 @@ public class ElevatorSystem {
             }
         }
         return nearest;
+    }
+
+    private int[][] transformElevators() {
+        int[][] elevatorsArray = new int[6][2];
+        for (int i = 0; i < elevators.size(); i++) {
+            int [] elevator = {elevators.get(i).getFloor(), elevators.get(i).getDirection()};
+            elevatorsArray[i] = elevator;
+        }
+        return elevatorsArray;
+    }
+
+    private Elevator createElevator(int floorElevator1, int directionElevator1) {
+        return new Elevator(floorElevator1, directionElevator1);
     }
 
 }
