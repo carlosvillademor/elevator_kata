@@ -1,7 +1,6 @@
 package com.carlos.lscc.katas.elevator;
 
-import java.util.ArrayList;
-import java.util.List;
+import static java.lang.Math.abs;
 
 /**
  * User: Carlos Fernandez
@@ -25,23 +24,27 @@ public class ElevatorSystem {
 
     public String findElevator(int floor, int direction) {
         for (int i=0; i<elevators.length; i++) {
-            List stationaryElevators = new ArrayList();
             if(elevators[i][0]==floor && (elevators[i][1]==0 || (direction == 1? elevators[i][1] > 0 : elevators[i][1] < 0))) {
                 return "Elevator " + (i+1);
             } else if(direction == 1 ? elevators[i][0] < floor && (elevators[i][0] + elevators[i][1] >= floor) : elevators[i][0] > floor && (elevators[i][0] + elevators[i][1] <= floor) ){
                 return "Elevator " + (i+1);
-            } else if(elevators[i][1] == 0) {
-                int nearest = findNearestStationaryElevator(elevators, floor);
             }
         }
-        return "Elevator 6";
+        int nearestStationaryElevator = findNearestStationaryElevator(elevators, floor);
+        if(nearestStationaryElevator>-1){ return "Elevator " + (nearestStationaryElevator + 1); }
+        return "No elevator";
     }
 
     private int findNearestStationaryElevator(int[][] elevators, int floor) {
         int nearest = -1;
-//        for (int i=0; i < stationaryElevators.size(); i++) {
-//            if(abs(stationaryElevators[i][0]-floor))
-//        }
+        int minimumDistance = 21;
+        for (int i=0; i < elevators.length; i++) {
+            int distanceInFloors = abs(elevators[i][0] - floor);
+            if(elevators[i][1] == 0 && distanceInFloors < minimumDistance) {
+                nearest = i;
+                minimumDistance = distanceInFloors;
+            }
+        }
         return nearest;
     }
 
