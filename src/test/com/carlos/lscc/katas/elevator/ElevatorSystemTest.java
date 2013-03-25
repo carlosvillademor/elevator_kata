@@ -29,6 +29,15 @@ public class ElevatorSystemTest {
     }
 
     @Test
+    (expected = LowestFloorException.class)
+    public void shouldValidateThatLowestFloorIs1() {
+        //Given/When
+        new ElevatorSystem(5,6,9,10,19,-12,0,-5,4,12,20,-3);
+        //Then
+        fail("It should have thrown an Exception because lowest floor possible is 1");
+    }
+
+    @Test
     public void shouldChooseTheElevatorInTheSameFloorAndStationary() {
         //Given
         int floor = 5;
