@@ -48,8 +48,9 @@ public class ElevatorSystem {
         return nearest;
     }
 
-    private Elevator createElevator(int floorElevator1, int directionElevator1) {
-        return new Elevator(floorElevator1, directionElevator1);
+    private Elevator createElevator(int floor, int direction) {
+        if(floor > 20) {throw new HighestFloorException();}
+        return new Elevator(floor, direction);
     }
 
     public Integer numberOfElevators() {

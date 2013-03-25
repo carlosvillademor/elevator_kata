@@ -3,6 +3,7 @@ package com.carlos.lscc.katas.elevator;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 /**
  * User: Carlos Fernandez
@@ -16,6 +17,15 @@ public class ElevatorSystemTest {
         ElevatorSystem elevatorSystem = new ElevatorSystem(5,6,9,10,19,-12,19,-5,4,12,6,-3);
         //Then
         assertThat(elevatorSystem.numberOfElevators(), is(6));
+    }
+
+    @Test
+    (expected = HighestFloorException.class)
+    public void shouldValidateThatHighestFloorIs20() {
+        //Given/When
+        new ElevatorSystem(5,6,9,10,19,-12,19,-5,4,12,21,-3);
+        //Then
+        fail("It should have thrown an Exception because highest floor possible is 20");
     }
 
     @Test
