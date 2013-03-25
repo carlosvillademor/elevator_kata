@@ -40,14 +40,6 @@ public class Elevator {
         return (direction == 1 ? isMovingUp() : isMovingDown());
     }
 
-    public int getFloor() {
-        return floor;
-    }
-
-    public int getDirection() {
-        return direction;
-    }
-
     public boolean isBelowFloor(int floor) {
         return this.floor < floor;
     }

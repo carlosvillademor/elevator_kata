@@ -11,13 +11,11 @@ import static org.junit.Assert.assertThat;
 public class ElevatorSystemTest {
 
     @Test
-    public void shouldCreateElevatorSystem() {
-        //Given
-        int [][] expectedElevatorSystem = {{5,6}, {9,10}, {19,-12}, {19,-5}, {4,12}, {6,-3}};
-        //When
+    public void shouldCreateElevatorSystemWithCorrectNumberOfElevators() {
+        //Given/When
         ElevatorSystem elevatorSystem = new ElevatorSystem(5,6,9,10,19,-12,19,-5,4,12,6,-3);
         //Then
-        assertThat(elevatorSystem.showElevators(), is(expectedElevatorSystem));
+        assertThat(elevatorSystem.numberOfElevators(), is(6));
     }
 
     @Test

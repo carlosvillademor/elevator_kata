@@ -10,17 +10,15 @@ import java.util.List;
 public class ElevatorSystem {
     private List<Elevator> elevators = new ArrayList<Elevator>();
 
-    public ElevatorSystem(int floorElevator1, int directionElevator1, int floorElevator2, int directionElevator2, int floorElevator3, int directionElevator3, int floorElevator4, int directionElevator4, int floorElevator5, int directionElevator5, int floorElevator6, int directionElevator6) {
+    public ElevatorSystem(int floorElevator1, int directionElevator1, int floorElevator2, int directionElevator2,
+                          int floorElevator3, int directionElevator3, int floorElevator4, int directionElevator4,
+                          int floorElevator5, int directionElevator5, int floorElevator6, int directionElevator6) {
         elevators.add(createElevator(floorElevator1, directionElevator1));
         elevators.add(createElevator(floorElevator2, directionElevator2));
         elevators.add(createElevator(floorElevator3, directionElevator3));
         elevators.add(createElevator(floorElevator4, directionElevator4));
         elevators.add(createElevator(floorElevator5, directionElevator5));
         elevators.add(createElevator(floorElevator6, directionElevator6));
-    }
-
-    public int[][] showElevators() {
-        return transformElevators();
     }
 
     public String findElevator(int floor, int direction) {
@@ -50,17 +48,11 @@ public class ElevatorSystem {
         return nearest;
     }
 
-    private int[][] transformElevators() {
-        int[][] elevatorsArray = new int[6][2];
-        for (int i = 0; i < elevators.size(); i++) {
-            int [] elevator = {elevators.get(i).getFloor(), elevators.get(i).getDirection()};
-            elevatorsArray[i] = elevator;
-        }
-        return elevatorsArray;
-    }
-
     private Elevator createElevator(int floorElevator1, int directionElevator1) {
         return new Elevator(floorElevator1, directionElevator1);
     }
 
+    public Integer numberOfElevators() {
+        return elevators.size();
+    }
 }
