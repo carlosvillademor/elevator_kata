@@ -50,7 +50,9 @@ public class ElevatorSystem {
 
     private Elevator createElevator(int floor, int direction) {
         if(floor > 20) {throw new HighestFloorException();}
+        if(direction > 0 && (direction + floor > 20)) {throw new DestinationFloorUpperBoundException();}
         if(floor < 1) {throw new LowestFloorException();}
+        if(direction < 0 && (direction + floor < 1)) {throw new DestinationFloorLowerBoundException();}
         return new Elevator(floor, direction);
     }
 

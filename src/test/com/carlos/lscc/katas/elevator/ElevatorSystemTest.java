@@ -29,12 +29,31 @@ public class ElevatorSystemTest {
     }
 
     @Test
+    (expected = DestinationFloorUpperBoundException.class)
+    public void shouldValidateThatDestinationFloorIsWithinUpperBound() {
+        //Given/When
+        new ElevatorSystem(5,6,9,12,19,-12,19,-5,4,12,20,-3);
+        //Then
+        fail("It should have thrown an Exception because the destination floor is outside the upper bound");
+    }
+
+    @Test
     (expected = LowestFloorException.class)
     public void shouldValidateThatLowestFloorIs1() {
         //Given/When
         new ElevatorSystem(5,6,9,10,19,-12,0,-5,4,12,20,-3);
         //Then
         fail("It should have thrown an Exception because lowest floor possible is 1");
+    }
+
+
+    @Test
+    (expected = DestinationFloorLowerBoundException.class)
+    public void shouldValidateThatDestinationFloorIsWithinLowerBound() {
+        //Given/When
+        new ElevatorSystem(5,-5,9,10,19,-12,6,-5,4,12,20,-3);
+        //Then
+        fail("It should have thrown an Exception because the destination floor is outside the lower bound");
     }
 
     @Test
