@@ -27,10 +27,8 @@ public class ElevatorSystem {
         for (Elevator elevator : elevators) {
             if(elevator.isOnFloor(floor) && (elevator.isStationary() || elevator.isMovingInSameDirection(direction))) {
                 return "Elevator " + (elevators.indexOf(elevator)+1);
-            } else if(direction == 1 ? elevator.getFloor() < floor &&
-                    (elevator.getFloor() + elevator.getDirection() >= floor) :
-                        elevator.getFloor() > floor &&
-                                (elevator.getFloor() + elevator.getDirection() <= floor) ){
+            } else if(direction == 1 ? elevator.isBelowFloor(floor) && elevator.isGoingAtLeastToFloor(floor) :
+                    elevator.isAboveFloor(floor) && (elevator.isGoingAtLeastToFloor(floor)) ){
                 return "Elevator " + (elevators.indexOf(elevator)+1);
             }
         }

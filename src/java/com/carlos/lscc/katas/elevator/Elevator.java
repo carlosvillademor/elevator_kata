@@ -47,4 +47,16 @@ public class Elevator {
     public int getDirection() {
         return direction;
     }
+
+    public boolean isBelowFloor(int floor) {
+        return this.floor < floor;
+    }
+
+    public boolean isGoingAtLeastToFloor(int floor) {
+        return this.floor < floor ? this.floor + this.direction >= floor : this.floor + this.direction <= floor;
+    }
+
+    public boolean isAboveFloor(int floor) {
+        return this.floor > floor;
+    }
 }
