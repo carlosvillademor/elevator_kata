@@ -1,5 +1,6 @@
 package com.carlos.lscc.katas.elevator;
 
+import org.hamcrest.Matcher;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -61,11 +62,12 @@ public class ElevatorSystemTest {
         //Given
         int floor = 5;
         int direction = 1;
+        Elevator elevator1 = new Elevator(5,0);
         ElevatorSystem elevatorSystem = new ElevatorSystem(5,0,9,10,19,-12,19,-5,4,12,6,-3);
         //When
-        String elevator = elevatorSystem.findElevator(floor, direction);
+        Elevator elevator = elevatorSystem.findElevator(floor, direction);
         //Then
-        assertThat(elevator, is("Elevator 1"));
+        assertThat(elevator, is(elevator1));
     }
 
     @Test
@@ -73,11 +75,12 @@ public class ElevatorSystemTest {
         //Given
         int floor = 4;
         int direction = 1;
+        Elevator elevator5 = new Elevator(4, 12);
         ElevatorSystem elevatorSystem = new ElevatorSystem(5,-3,9,10,19,-12,19,-5,4,12,6,-3);
         //When
-        String elevator = elevatorSystem.findElevator(floor, direction);
+        Elevator elevator = elevatorSystem.findElevator(floor, direction);
         //Then
-        assertThat(elevator, is("Elevator 5"));
+        assertThat(elevator, is(elevator5));
     }
 
     @Test
@@ -85,11 +88,12 @@ public class ElevatorSystemTest {
         //Given
         int floor = 11;
         int direction = 1;
+        Elevator elevator2 = new Elevator(9, 10);
         ElevatorSystem elevatorSystem = new ElevatorSystem(5,-3,9,10,19,-12,19,-5,4,12,6,-3);
         //When
-        String elevator = elevatorSystem.findElevator(floor, direction);
+        Elevator elevator = elevatorSystem.findElevator(floor, direction);
         //Then
-        assertThat(elevator, is("Elevator 2"));
+        assertThat(elevator, is(elevator2));
     }
 
     @Test
@@ -97,11 +101,12 @@ public class ElevatorSystemTest {
         //Given
         int floor = 15;
         int direction = 0;
+        Elevator elevator5 = new Elevator(17, 0);
         ElevatorSystem elevatorSystem = new ElevatorSystem(5,0,9,10,14,-12,13,-5,17,0,6,-3);
         //When
-        String elevator = elevatorSystem.findElevator(floor, direction);
+        Elevator elevator = elevatorSystem.findElevator(floor, direction);
         //Then
-        assertThat(elevator, is("Elevator 5"));
+        assertThat(elevator, is(elevator5));
     }
 
 }

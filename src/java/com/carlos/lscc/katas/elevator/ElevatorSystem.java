@@ -21,21 +21,19 @@ public class ElevatorSystem {
         elevators.add(createElevator(floorElevator6, directionElevator6));
     }
 
-    public String findElevator(int floor, int direction) {
+    public Elevator findElevator(int floor, int direction) {
         for (Elevator elevator : elevators) {
             if(elevator.isOnFloor(floor) && (elevator.isStationary() || elevator.isMovingInSameDirection(direction))) {
-                return "Elevator " + (elevators.indexOf(elevator)+1);
+                return elevator;
             } else if(direction == 1 ? elevator.isBelowFloor(floor) && elevator.isGoingAtLeastToFloor(floor) :
                     elevator.isAboveFloor(floor) && (elevator.isGoingAtLeastToFloor(floor)) ){
-                return "Elevator " + (elevators.indexOf(elevator)+1);
+                return elevator;
             }
         }
-        int nearestStationaryElevator = findNearestStationaryElevator(elevators, floor);
-        if(nearestStationaryElevator>-1){ return "Elevator " + (nearestStationaryElevator + 1); }
-        return "No elevator";
+        return findNearestStationaryElevator(elevators, floor);
     }
 
-    private int findNearestStationaryElevator(List<Elevator> elevators, int floor) {
+    private Elevator findNearestStationaryElevator(List<Elevator> elevators, int floor) {
         int nearest = -1;
         int minimumDistance = 21;
         for (int i=0; i < elevators.size(); i++) {
@@ -45,7 +43,8 @@ public class ElevatorSystem {
                 minimumDistance = distanceInFloors;
             }
         }
-        return nearest;
+        if(nearest == -1) {return null;}
+        return elevators.get(nearest);
     }
 
     private Elevator createElevator(int floor, int direction) {

@@ -51,4 +51,16 @@ public class Elevator {
     public boolean isAboveFloor(int floor) {
         return this.floor > floor;
     }
+
+    private boolean isGoingSameDirection(int direction) {
+        return this.direction == direction;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if(!(other instanceof Elevator)) {return false;}
+        if(this == other) {return true; }
+        return ((Elevator) other).distanceToFloor(this.floor) == 0 && ((Elevator) other).isGoingSameDirection(this.direction);
+    }
+
 }
